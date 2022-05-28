@@ -5,6 +5,42 @@ import Config from '../env.js';
 
 /**
     oss 绕开服务端客户端直传
+
+    GetSignatureWithPolicy生成的对象有效时长由配置文件中的时间决定timeout
+
+
+    <input type="file" class="inp" multiple>
+    <script type="module">
+        import AliyunOSSRirect from "./aliyun_oss/index.js";
+        var oss = new AliyunOSSRirect()
+
+        document.querySelector(".inp").addEventListener("change", function (e) {
+            var file = document.querySelector(".inp").files[0]
+            console.log(file.name)
+            oss.UploadFileForWeb(file).then(res=>{
+                console.log(res)
+            }).catch(e=>{
+                console.log(e)
+            })
+        })
+    </script>
+    
+
+
+
+    var oss = new AliyOss();
+    uni.chooseImage({
+        count:1,
+        success: (chooseImageRes) => {
+            const tempFilePaths = chooseImageRes.tempFilePaths;
+            oss.UploadFileForUniapp(tempFilePaths[0]).then(res=>{
+                console.log(res)
+            }).catch(e=>{
+                console.log(e)
+            })
+        }
+    });
+
 */
 
 class AliyunOSSRirect extends Config {
@@ -112,37 +148,3 @@ class AliyunOSSRirect extends Config {
 export default AliyunOSSRirect
 
 
-/**
-
-<input type="file" class="inp" multiple>
-<script type="module">
-    import AliyunOSSRirect from "./aliyun_oss/index.js";
-    var oss = new AliyunOSSRirect()
-
-    document.querySelector(".inp").addEventListener("change", function (e) {
-        var file = document.querySelector(".inp").files[0]
-        console.log(file.name)
-        oss.UploadFileForWeb(file).then(res=>{
-            console.log(res)
-        }).catch(e=>{
-            console.log(e)
-        })
-    })
-</script>
- */
-
-/*
-var oss = new AliyOss();
-uni.chooseImage({
-	count:1,
-	success: (chooseImageRes) => {
-		const tempFilePaths = chooseImageRes.tempFilePaths;
-		oss.UploadFileForUniapp(tempFilePaths[0]).then(res=>{
-			console.log(res)
-		}).catch(e=>{
-			console.log(e)
-		})
-	}
-});
-
-*/
