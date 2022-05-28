@@ -6,7 +6,7 @@ class LibEnvConfig {
         AccessKeySecret:'ijVL6QvEbdIbAoe4xHBKma5wCeNNz9',               //
         OSSAccessKeyId:'LTAI5t7dF1GY84Xa6JW3wxUw',                     //
         timeout:87600,                                          //这个是上传文件时Policy的失效时间
-        conditions:[["content-length-range",0,1024*3000]],                  //生成policy如果没有可能报400
+        conditions:[["content-length-range",0,1024*3000]],       //规则          //生成policy如果没有可能报400
     }
 }
 
