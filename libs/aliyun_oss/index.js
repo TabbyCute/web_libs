@@ -8,6 +8,7 @@ import Config from '../env.js';
 
     GetSignatureWithPolicy生成的对象有效时长由配置文件中的时间决定timeout
 
+    如果oss没设置跨域可能会报错
 
     <input type="file" class="inp" multiple>
     <script type="module">
