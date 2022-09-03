@@ -55,6 +55,7 @@ class CryptoJSTB {
         return CryptoJS.enc.Base64.stringify(encrypted.ciphertext)
     }
 
+    
     ///解密字符串
     decStrAES (plainText) {
         let options = {iv:this.iv,mode:this.mode,padding:this.padding}
@@ -66,6 +67,10 @@ class CryptoJSTB {
         return decryptedStr.toString()
     }
     
+    /**
+        @param {Uint8Array}
+        @return {Uint8Array}
+    */
     ///加密字节
     encByteAES(plainText){
         var wordArray = this.Uint8ToW(plainText);   // Uint8Array->WordArray
@@ -73,7 +78,10 @@ class CryptoJSTB {
         const res = CryptoJS.AES.encrypt(wordArray, this.key,options).ciphertext
         return this.WToUint8(res)                   // WordArray->Uint8Array
     }
-    
+    /**
+        @param {Uint8Array}
+        @return {Uint8Array}
+    */
     ///解密字节
     decByteAES(plainText){
         var wordArray = this.Uint8ToW(plainText);   // Uint8Array->WordArray
@@ -107,6 +115,10 @@ class CryptoJSTB {
         return u8;
     }
 
+     /**
+        @param {file} 
+        @return {Promise<Uint8Array>}
+    */
     ///文件转u8
     static fileToUint8(file){
         return new Promise((resolve,reject)=>{
@@ -126,6 +138,7 @@ class CryptoJSTB {
         window.URL.revokeObjectURL(link.href);
     }
 }
+
 
 ///实例化
 var keyStr="abcdabcdabcdabcd"
