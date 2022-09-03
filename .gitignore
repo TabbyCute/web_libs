@@ -1,0 +1,12 @@
+# Miscellaneous
+*.
+.history
+.svn/
+.vscode
+.vscode/
+.grunt/
+.grunt
+.build/
+.build
+.idea/
+.idea
