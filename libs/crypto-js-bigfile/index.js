@@ -231,6 +231,7 @@ class TBFileRules {
             var decData=cjstb.decByteAES(encData)
             resolve({
                 code:1,
+                params:headParams,
                 data:new Uint8Array([...decData,...otherData])
             })
         })
