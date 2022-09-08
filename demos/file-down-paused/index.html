@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大文件下载暂停</title>
+    <style>
+        img{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="down()">下载</button>
+    <img src="" alt="" id="img">
+    <script>
+        /**
+         *
+         * 这个方法还能实现快速下载（此方法上稍加改动就行）
+         *
+         * 响应头里面总长度
+         *
+         * */
+
+        var index =0,   ///起始的索引
+            fileData=[],///文件
+            spend=500;  ///每次下载的量
+        function down() {
+            var start=index*spend;
+            var end=(spend*(index+1))-1;
+            var b=`bytes=${start}-${end}`
+            fetch("http://127.0.0.1:8080/down",{
+                method:"GET",
+                headers:{"Range":b}
+            }).then(res=>{
+                return res.arrayBuffer()
+            }).then(res=>{
+                fileData=[...fileData,...new Uint8Array(res)]
+                if(res.byteLength===500){
+                    index++
+                    down()
+                }else{
+                    console.log("展示图片")
+                    show()
+                }
+            })
+        }
+
+
+        function show() {
+            var blob=new Blob([Uint8Array.from(fileData)]);
+            var src =  window.URL.createObjectURL(blob);
+            var img=document.querySelector("#img")
+            img.src = src
+        }
+        function saveFile() {
+            var blob=new Blob([fileData]);
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+            window.URL.revokeObjectURL(link.href);
+        }
+
+    </script>
+</body>
+</html>
