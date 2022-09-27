@@ -4,7 +4,7 @@ import CryptoJS from './scripts/crypto-js.js';
 class Config {
     OSS={
         success_action_status:200,                                          //上传成功后的网络响应码
-        OssAddress:`http://wh-fy.oss-cn-hangzhou.aliyuncs.com/`,   // OSS地址
+        OssAddress:`*`,   // OSS地址
         bucketSrc:"fy_talk_file/",                                             // 需要存入的oss路径
         AccessKeySecret:'*',               //
         OSSAccessKeyId:'*',                     //
